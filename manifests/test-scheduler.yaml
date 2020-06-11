@@ -1,0 +1,33 @@
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name:pause 
+  labels:
+    app:pause
+spec: 
+  type:LoadBanlancer
+  ports:
+  - port:80
+  selector:
+    app:pause
+---
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+   app:pause
+spec: 
+  replicas: 5 
+  selector: 
+    matchLabels: 
+      app: pause
+  template: 
+    metadata: 
+      labels: 
+        app: pause 
+    spec: 
+      containers: 
+      - name: pause 
+        image: gcr.azk8s.cn/google_containers/pause:3.1
+
+
+
