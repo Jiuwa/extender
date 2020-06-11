@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/cnych/Jiuwa/extender/controller"
+	"github.com/Jiuwa/extender/controller"
 	"log"
 	"math/rand"
 	"net/http"
