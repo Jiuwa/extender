@@ -1,4 +1,4 @@
-module github.com/Jiuwa/extender"
+module github.com/Jiuwa/extender
 
 go 1.13
 
