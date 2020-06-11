@@ -1,18 +1,17 @@
 package main
 
 import (
-	"fmt"
-	_ "fmt"
-	"k8s.io/api/core/v1"
-	schedulerapi "k8s.io/kubernetes/pkg/scheduler/api"
 	"log"
 	"math"
 	"strings"
+	
+	"k8s.io/api/core/v1"
+	schedulerapi "k8s.io/kubernetes/pkg/scheduler/api"
 )
 
 const (
 	PodNameFitPred        = "PodNameFitPred"
-	PodNameFitPredFailMsg = "Pod name don't fit with node"
+	PodNameFitPredFailMsg = "Pod name don't fit "
 )
 
 var predicatesFuncs = map[string]FitPredicate{
@@ -21,19 +20,13 @@ var predicatesFuncs = map[string]FitPredicate{
 
 type FitPredicate func(pod *v1.Pod, node v1.Node) (bool, []string, error)
 
-var predicatesSorted = []string{
-	PodNameFitPred,
-}
+var predicatesSorted = []string{PodNameFitPred}
 
-// filter filters nodes according to predicates defined in this extender
-// it's webhooked to pkg/scheduler/core/generic_scheduler.go#findNodesThatFit()
 func filter(args schedulerapi.ExtenderArgs) *schedulerapi.ExtenderFilterResult {
 	var filteredNodes []v1.Node
 	failedNodes := make(schedulerapi.FailedNodesMap)
 	pod := args.Pod
 
-	// TODO: parallelize this
-	// TODO: hanlde error
 	for _, node := range args.Nodes.Items {
 		fits, failReasons, _ := podFitsOnNode(pod, node)
 		if fits {
@@ -76,5 +69,5 @@ func PodNameFitPredicate(pod *v1.Pod, node v1.Node) (bool, []string, error) {
 		return true, nil, nil
 	}
 	log.Printf("pod %v/%v length is %d,  node length is not over 10, unfit\n", pod.Name, pod.Namespace, len(pod.Name))
-	return false, []string{PodNameFitPredFailMsg}, fmt.Errorf("pod length exceed ")
+	return false, []string{PodNameFitPredFailMsg}, nil
 }
