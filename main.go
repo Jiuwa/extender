@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/Jiuwa/extender/controller"
 	"log"
 	"math/rand"
 	"net/http"
@@ -16,9 +15,9 @@ func init() {
 
 func main() {
 	router := httprouter.New()
-	router.GET("/", controller.Index)
-	router.POST("/filter", controller.Filter)
-	router.POST("/prioritize", controller.Prioritize)
+	router.GET("/",Index)
+	router.POST("/filter", Filter)
+	router.POST("/prioritize", Prioritize)
 	
 	log.Printf("start up my-scheduler-extender!\n")
 	log.Fatal(http.ListenAndServe(":8888", router))
