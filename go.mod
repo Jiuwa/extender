@@ -1,6 +1,6 @@
-module extends
+module github.com/Jiuwa/extender"
 
-go 1.12
+go 1.13
 
 replace k8s.io/cli-runtime => k8s.io/cli-runtime v0.0.0-20191115221445-ec04ad4dbd24
 
@@ -47,5 +47,5 @@ replace k8s.io/cri-api => k8s.io/cri-api v0.0.0-20191114225051-381f557272b4
 require (
 	github.com/julienschmidt/httprouter v1.3.0
 	k8s.io/api v0.0.0
-	k8s.io/kubernetes v1.16.3
+	k8s.io/kubernetes v1.14.9
 )
