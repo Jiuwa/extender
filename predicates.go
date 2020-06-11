@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"math"
+	"math/rand"
 	"strings"
 	
 	"k8s.io/api/core/v1"
