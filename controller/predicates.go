@@ -62,7 +62,7 @@ func podFitsOnNode(pod *v1.Pod, node v1.Node) (bool, []string, error) {
 
 func PodNameFitPredicate(pod *v1.Pod, node v1.Node) (bool, []string, error) {
 	var valid bool
-	valid = (len(pod.Name) > 20)
+	valid = (len(pod.Name) > 30)
 	if valid {
 		log.Printf("pod %v/%v length is %d, node length is over 10, fit", pod.Name, pod.Namespace, len(pod.Name))
 		return true, nil, nil
