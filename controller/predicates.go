@@ -64,7 +64,7 @@ func PodNameFitPredicate(pod *v1.Pod, node v1.Node) (bool, []string, error) {
 	var valid bool
 	valid = (len(pod.Name) > 30)
 	if valid {
-		log.Printf("pod %v/%v length is %d, node length is over 30, fit", pod.Name, pod.Namespace, len(pod.Name))
+		log.Printf("pod %v/%v length is %d, node length is over 30, fit\n", pod.Name, pod.Namespace, len(pod.Name))
 		return true, nil, nil
 	}
 	log.Printf("pod %v/%v length is %d,  node length is not over 30, unfit\n", pod.Name, pod.Namespace, len(pod.Name))
